@@ -18,7 +18,7 @@ app.use(cors());
 
 //All routes with prefix
 app.get("/", (req, res) => {
-  res.status(200).send("Status 200 for Yenmo API");
+  res.status(200).send("Status 200 for API");
 });
 
 app.use("/api", allRoutes);
