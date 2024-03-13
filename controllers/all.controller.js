@@ -82,7 +82,7 @@ const showLatestQuestion = (req, res) => {
     //     id: 1,
     //     option_id: 1
     // }
-    console.log('---allQuestions[allQuestions.length - 1]', allQuestions)
+    console.log("---allQuestions[allQuestions.length - 1]", allQuestions);
     let latestQuestion = allQuestions[allQuestions.length - 1]?.string;
     console.log("latest question", latestQuestion);
     let latestOption = allOptions[allOptions.length - 1];
@@ -105,8 +105,30 @@ const showLatestQuestion = (req, res) => {
   }
 };
 
+const showAnswer = (req, res) => {
+  try {
+    let latestQuestion = allQuestions[allQuestions.length - 1]?.string;
+    console.log("latest question", latestQuestion);
+    let latestOption = allOptions[allOptions.length - 1];
+    let correct_opt = latestOption?.correct_opt;
+
+    return res.status(200).send({
+      data: { correct_opt },
+      message: "",
+      success: true,
+    });
+  } catch (err) {
+    return res.status(500).send({
+      message: "Internal server error",
+      success: false,
+      data: [],
+    });
+  }
+};
+
 module.exports = {
   submitQuestion,
   submitAnswer,
-  showLatestQuestion
+  showLatestQuestion,
+  showAnswer
 };
